@@ -1,4 +1,3 @@
-//Versione 4
 public class Test {
 	private Domanda d[];
 	private int n,pos=0;
