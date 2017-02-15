@@ -1,4 +1,4 @@
-
+//Versione 2
 public class Test {
 	private Domanda d[];
 	private int n,pos=0;
