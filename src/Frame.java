@@ -14,7 +14,7 @@ public class Frame extends JFrame implements ActionListener {
 		super("TEST");
 		
 		menu();
-		num=5;
+		num=1;
 		t=new Test(num);
 		
 		Container c=this.getContentPane();
