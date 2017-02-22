@@ -3,19 +3,18 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class TestFrame extends JFrame implements ActionListener {
-	private JCheckBox cb[][];
-	private JRadioButton rb[][];
+	private JCheckBox cb[];
+	private JRadioButton rb[];
 	private JMenuItem invia, exit, info, help;
-	private Test t;
 	private int num;
 	private JLabel[] l;
+	private Test t;
 
-	public TestFrame() {
+	public TestFrame(Test temp) {
 		super("Test");
-
-		num = 5;
+		
+		t=temp;
 		menu();
-		t = new Test(num);
 		Container c = this.getContentPane();
 		JPanel p = new JPanel();
 		JPanel pd[] = new JPanel[num];
@@ -25,8 +24,8 @@ public class TestFrame extends JFrame implements ActionListener {
 		l = new JLabel[num];
 		int k = 0, f = 0;
 
-		rb = new JRadioButton[3][4];
-		cb = new JCheckBox[2][4];
+		rb = new JRadioButton[12];
+		cb = new JCheckBox[8];
 
 		for (int i = 0; i < num; i++) {
 			pd[i].setLayout(new GridLayout(5, 1, 100, 0));
@@ -37,19 +36,19 @@ public class TestFrame extends JFrame implements ActionListener {
 			if (t.getDomanda(i).isRS()) {// f
 				String[] risp = t.getDomanda(i).getRisp();
 				for (int j = 0; j < 4; j++) {
-					cb[f][j] = new JCheckBox(risp[j]);
-					pd[i].add(cb[f][j]);
+					cb[f + j] = new JCheckBox(risp[j]);
+					pd[i].add(cb[f + j]);
 				}
-				f++;
+				f += 4;
 			} else {// k
 				ButtonGroup bg = new ButtonGroup();
 				String[] risp = t.getDomanda(i).getRisp();
 				for (int j = 0; j < 4; j++) {
-					rb[k][j] = new JRadioButton(risp[j]);
-					bg.add(rb[k][j]);
-					pd[i].add(rb[k][j]);
+					rb[k + j] = new JRadioButton(risp[j]);
+					bg.add(rb[k + j]);
+					pd[i].add(rb[k + j]);
 				}
-				k++;
+				k += 4;
 			}
 			p.add(pd[i]);
 		}
@@ -101,36 +100,27 @@ public class TestFrame extends JFrame implements ActionListener {
 			for (int i = 0; i < num; i++) {
 
 				if (!t.getDomanda(i).isRS()) {
-					boolean[] scelte = { rb[k][0].isSelected(), rb[k][1].isSelected(), rb[k][2].isSelected(),
-							rb[k][3].isSelected() };
-					if (t.correggi(i, scelte)) punti++;
-					k++;
-				} else {
-
-					boolean[] scelte = { cb[f][0].isSelected(), cb[f][1].isSelected(), cb[f][2].isSelected(),
-							cb[f][3].isSelected() };
+					boolean[] scelte = { rb[k].isSelected(), rb[k + 1].isSelected(), rb[k + 2].isSelected(),rb[k + 3].isSelected() };
 					if (t.correggi(i, scelte))
 						punti++;
-					f++;
+					k += 4;
+				} else {
+
+					boolean[] scelte = { cb[f].isSelected(), cb[f + 1].isSelected(), cb[f + 2].isSelected(),cb[f + 3].isSelected() };
+					if (t.correggi(i, scelte))
+						punti++;
+					f += 4;
 				}
 			}
-			JOptionPane.showMessageDialog(null, "Punti: " + punti + "/5", "Punteggio", JOptionPane.INFORMATION_MESSAGE,
-					null);
-			System.exit(0);
+			JOptionPane.showMessageDialog(null, "Punti: " + punti + "/5", "Punteggio", JOptionPane.INFORMATION_MESSAGE,null);
 
 		} else if (o == exit) {
 			System.exit(0);
 		} else if (o == info) {
-			JOptionPane.showMessageDialog(null, "v 1.0\nSviluppato da\nAndrea Felline", "Informazioni",
-					JOptionPane.INFORMATION_MESSAGE, null);
+			JOptionPane.showMessageDialog(null, "v 1.0\nSviluppato da\nAndrea Felline", "Informazioni",JOptionPane.INFORMATION_MESSAGE, null);
 		} else if (o == help) {
-			JOptionPane.showMessageDialog(null, "Rispondere alle domande e poi scegliere File>Invia", "Aiuto",
-					JOptionPane.INFORMATION_MESSAGE, null);
+			JOptionPane.showMessageDialog(null, "Rispondere alle domande e poi scegliere File>Invia", "Aiuto",JOptionPane.INFORMATION_MESSAGE, null);
 		}
-	}
-
-	public static void main(String[] args) {
-		new TestFrame();
 	}
 
 }
