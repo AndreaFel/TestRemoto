@@ -9,6 +9,11 @@ public class Test {
 		else n=num;
 		
 		d=new Domanda[n];
+		r=new Registro();
+	}
+	
+	public Registro getReg(){
+		return r;
 	}
 	
 	public boolean addDomanda(String t,String[] r,boolean[] c){

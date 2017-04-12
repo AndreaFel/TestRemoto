@@ -1,59 +1,31 @@
+import java.util.ArrayList;
 
 public class Registro {
-	private RisTest[] rt;
-	private int num, pos;
+	private ArrayList<Studente> stud;
 
-	public Registro(int n) {
-		num = n;
-		rt = new RisTest[n];
-		pos=0;
-	}
-
-	public RisTest getRisTest(int p) {
-		try {
-			return rt[p];
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-	public RisTest[] getRisTest(Studente s) {
-		int n = 0;
-		for (int i = 0; i < pos; i++) {
-			if (rt[i].getS() == s)
-				n++;
-		}
-		RisTest[] temp = new RisTest[n];
-		for (int i = 0, j = 0; i < pos; i++) {
-			if (rt[i].getS() == s) {
-				temp[j] = rt[i];
-				j++;
-			}
-		}
-		return temp;
-	}
-
-	public RisTest[] getRisTest(String materia) {
-		int n = 0;
-		for (int i = 0; i < pos; i++) {
-			if (rt[i].getMateria().compareTo(materia) == 0)
-				n++;
-		}
-		RisTest[] temp = new RisTest[n];
-		for (int i = 0, j = 0; i < pos; i++) {
-			if (rt[i].getMateria().compareTo(materia) == 0) {
-				temp[j] = rt[i];
-				j++;
-			}
-		}
-		return temp;
+	public Registro() {
+		stud = new ArrayList<Studente>();
 	}
 	
-	public void addRisTest(RisTest r){
-		if(pos<=num)
-			rt[pos]=r;
-		if(pos<num)
-			pos++;
+	public void addStudente(Studente s){
+		stud.add(s);
+	}
+	
+	public Studente getStud(String nome,String cog){
+		for(int i=0;i<stud.size();i++){
+			if(stud.get(i).getNome().compareTo(nome)==0 && stud.get(i).getCog().compareTo(cog)==0)
+				return stud.get(i);
+		}
+		return null;
+	}
+	
+	public ArrayList<Studente> getStud(String classe){
+		ArrayList<Studente> temp=new ArrayList<Studente>();
+		for(int i=0;i<stud.size();i++){
+			if(stud.get(i).getClasse().compareTo(classe)==0)
+				temp.add(stud.get(i));
+		}
+		return temp;
 	}
 
 }

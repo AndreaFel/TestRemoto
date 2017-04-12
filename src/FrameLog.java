@@ -2,13 +2,14 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class FrameLog extends JFrame implements ActionListener {
+public class FrameLog extends JDialog implements ActionListener {
 	private JTextField nome,cog,classe;
 	private JComboBox gg,mm,aa;
 	private JButton log;
+	private Studente temp;
 	public FrameLog(){
-		super("Test");
-		
+		//super("Test");		
+		this.setModal(true);
 		Container c = this.getContentPane();
 		JPanel p = new JPanel(new GridLayout(5,1));
 		JPanel pl[]=new JPanel[5];
@@ -29,6 +30,7 @@ public class FrameLog extends JFrame implements ActionListener {
 			aa.addItem(1969+i);
 		}
 		log=new JButton("Log in");
+		log.addActionListener(this);
 		
 		pl[0].add(nom);
 		pl[0].add(nome);
@@ -47,7 +49,7 @@ public class FrameLog extends JFrame implements ActionListener {
 		p.add(pl[4]);
 		c.add(p);
 		
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		//this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(400, 500);
 		setLocation(400, 200);
 		setVisible(true);
@@ -57,11 +59,18 @@ public class FrameLog extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		Object o = arg0.getSource();
 		if (o == log) {
-			
+			String data=gg.getSelectedItem()+"/"+mm.getSelectedItem()+"/"+aa.getSelectedItem();
+			temp=new Studente(nome.getText(),cog.getText(),data);
+			temp.setClasse(classe.getText());
+			super.dispose();
 		}
 	}
 	
-	public static void main(String[] args) {
-		new FrameLog();
+	public Studente getStud(){
+		return temp;
 	}
+	
+	/*public static void main(String[] args) {
+		new FrameLog();
+	}*/
 }
