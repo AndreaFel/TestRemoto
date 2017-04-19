@@ -120,7 +120,7 @@ public class TestFrame extends JFrame implements ActionListener {
 					f++;
 				}
 			}
-			JOptionPane.showMessageDialog(null, "Punti: " + punti + "/5", "Punteggio", JOptionPane.INFORMATION_MESSAGE,
+			JOptionPane.showMessageDialog(null, "Punti: " + punti + "/"+num, "Punteggio", JOptionPane.INFORMATION_MESSAGE,
 					null);
 
 		} else if (o == exit) {

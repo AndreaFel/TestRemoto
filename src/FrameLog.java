@@ -68,9 +68,10 @@ public class FrameLog extends JDialog implements ActionListener {
 	
 	public Studente getStud(){
 		return temp;
+		
 	}
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		new FrameLog();
-	}*/
+	}
 }
