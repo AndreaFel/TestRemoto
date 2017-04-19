@@ -13,7 +13,7 @@ Domanda 3
 1risp
 2risp
 -3risp
-4-risp
+-4risp
 Domanda 4
 1risp
 -2risp
