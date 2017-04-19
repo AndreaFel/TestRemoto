@@ -1,8 +1,8 @@
 4
 Domanda 1
 1risp
-2risp
--3risp
+-2risp
+3risp
 4risp
 Domanda 2
 -1risp
