@@ -17,5 +17,5 @@ Domanda 3
 Domanda 4
 1risp
 -2risp
-3-risp
+-3risp
 4risp
