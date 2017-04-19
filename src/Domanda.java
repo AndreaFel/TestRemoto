@@ -3,7 +3,7 @@ public class Domanda {
 	private String testo;
 	private String[] risposte;
 	private boolean[] corrette;
-	private boolean rispSing;
+	private boolean rispSing=false;
 	private int num;
 	public Domanda(String d) {
 		testo=d;
@@ -21,8 +21,9 @@ public class Domanda {
 		int cor=0;
 		for(int i=0;i<num;i++){
 			corrette[i]=c[i];
-			if (c[i]) cor++;}
-		if(cor>1) rispSing=true;
+			if (c[i]) cor++;
+		}
+		if(cor==1) rispSing=true;
 	}
 	
 	public String getText(){

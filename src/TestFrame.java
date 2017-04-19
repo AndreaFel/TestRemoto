@@ -24,9 +24,15 @@ public class TestFrame extends JFrame implements ActionListener {
 		p.setLayout(new GridLayout(num, 1));
 		l = new JLabel[num];
 		int k = 0, f = 0;
-
-		rb = new JRadioButton[3][4];
-		cb = new JCheckBox[2][4];
+		
+		int cont=0;
+		for(int i=0;i<num;i++){
+			if(t.getDomanda(i).isRS())
+				cont++;
+		}
+		System.out.println(cont);
+		rb = new JRadioButton[cont][4];
+		cb = new JCheckBox[num-cont][4];
 
 		for (int i = 0; i < num; i++) {
 			pd[i].setLayout(new GridLayout(5, 1, 100, 0));
@@ -34,14 +40,7 @@ public class TestFrame extends JFrame implements ActionListener {
 
 			pd[i].add(l[i]);
 
-			if (t.getDomanda(i).isRS()) {// f
-				String[] risp = t.getDomanda(i).getRisp();
-				for (int j = 0; j < 4; j++) {
-					cb[f][j] = new JCheckBox(risp[j]);
-					pd[i].add(cb[f][j]);
-				}
-				f++;
-			} else {// k
+			if (t.getDomanda(i).isRS()) {// k
 				ButtonGroup bg = new ButtonGroup();
 				String[] risp = t.getDomanda(i).getRisp();
 				for (int j = 0; j < 4; j++) {
@@ -50,6 +49,13 @@ public class TestFrame extends JFrame implements ActionListener {
 					pd[i].add(rb[k][j]);
 				}
 				k++;
+			} else {// f
+				String[] risp = t.getDomanda(i).getRisp();
+				for (int j = 0; j < 4; j++) {
+					cb[f][j] = new JCheckBox(risp[j]);
+					pd[i].add(cb[f][j]);
+				}
+				f++;
 			}
 			p.add(pd[i]);
 		}
@@ -100,7 +106,7 @@ public class TestFrame extends JFrame implements ActionListener {
 
 			for (int i = 0; i < num; i++) {
 
-				if (!t.getDomanda(i).isRS()) {
+				if (t.getDomanda(i).isRS()) {
 					boolean[] scelte = { rb[k][0].isSelected(), rb[k][1].isSelected(), rb[k][2].isSelected(),
 							rb[k][3].isSelected() };
 					if (t.correggi(i, scelte)) punti++;
