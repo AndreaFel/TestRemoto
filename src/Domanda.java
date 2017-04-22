@@ -5,6 +5,7 @@ public class Domanda {
 	private boolean[] corrette;
 	private boolean rispSing=false;
 	private int num;
+	private String materia;
 	public Domanda(String d) {
 		testo=d;
 	}
@@ -41,6 +42,26 @@ public class Domanda {
 	public boolean isRS(){
 		return rispSing;
 	}
-
+	
+	public void setMateria(int n){
+		switch(n){
+		case 0: materia="Matematica";
+			break;
+		case 1: materia="Italiano";
+		break;
+		case 2: materia="Storia";
+		break;
+		case 3: materia="Informatica";
+		break;
+		case 4: materia="Sistemi";
+		break;
+		case 5: materia="Inglese";
+		break;
+		}
+	}
+	
+	public String getMateria(){
+		return materia;
+	}
 
 }
